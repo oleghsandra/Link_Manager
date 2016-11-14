@@ -1,0 +1,3 @@
+﻿<select ng-change="vm.updateNewModelParams()" ng-model="vm.newLinkTypeId" class="newLinkTypeSelectBox">
+    <option  ng-repeat="op in vm.linkTypes" value="{{op.Id}}">{{op.Name}}</option>
+</select>

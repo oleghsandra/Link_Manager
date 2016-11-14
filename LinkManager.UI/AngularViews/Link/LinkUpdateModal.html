@@ -1,0 +1,34 @@
+﻿<!-- The Modal -->
+<div id="updateLinkModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span ng-click="updateLinkModal.closeUpdateLinkModal()" id="closeBtn" class="close">×</span>
+            <h2>Updating link information</h2>
+        </div>
+        <div class="modal-body">
+            <table class="appTable">
+                <tr class="header">
+                    <th colspan="2">
+                        <a class="urlCol" href="{{vm.updateLink.Url}}" target="_blank"> {{vm.updateLink.Url}}</a>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Title: </td>
+                    <td>
+                        <input type="text" ng-model="vm.updateLink.Title" id="updateLinkNameField">
+                    </td>
+                </tr>
+                <tr>
+                    <td>New type: </td>
+                    <td>
+                        <select ng-model="vm.updateLinkTypeId" class="updateLinkTypeSelectBox">
+                            <option ng-repeat="op in vm.linkTypes" value="{{op.Id}}">{{op.Name}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+                <button type="button" ng-click="vm.updateLinks()" class="updateBtn btn btn-success">Update</button>
+        </div>
+    </div>
+</div>

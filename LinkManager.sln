@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkManager.Common", "LinkManager.Common\LinkManager.Common.csproj", "{34227F84-683C-485A-9F43-FD4A8EBCCC3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkManager.DAL", "LinkManager.DAL\LinkManager.DAL.csproj", "{6A126290-075C-4D2F-9717-75FC13AD2E6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{CFA255BE-C24B-4731-AFA5-4AC158EC0F94}"
+	ProjectSection(SolutionItems) = preProject
+		1.CreateDB.sql = 1.CreateDB.sql
+		2.CreateTables.sql = 2.CreateTables.sql
+		3.CreateProcs.sql = 3.CreateProcs.sql
+		4.Insert.sql = 4.Insert.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkManager.UI", "LinkManager.UI\LinkManager.UI.csproj", "{A1150BC4-9AA1-4035-8B12-3AD36CF9793C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkManager.UI.Tests", "LinkManager.UI.Tests\LinkManager.UI.Tests.csproj", "{4FD8979F-9736-486A-A229-1359A3EDFBDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34227F84-683C-485A-9F43-FD4A8EBCCC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34227F84-683C-485A-9F43-FD4A8EBCCC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34227F84-683C-485A-9F43-FD4A8EBCCC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34227F84-683C-485A-9F43-FD4A8EBCCC3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A126290-075C-4D2F-9717-75FC13AD2E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A126290-075C-4D2F-9717-75FC13AD2E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A126290-075C-4D2F-9717-75FC13AD2E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A126290-075C-4D2F-9717-75FC13AD2E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1150BC4-9AA1-4035-8B12-3AD36CF9793C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1150BC4-9AA1-4035-8B12-3AD36CF9793C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1150BC4-9AA1-4035-8B12-3AD36CF9793C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1150BC4-9AA1-4035-8B12-3AD36CF9793C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD8979F-9736-486A-A229-1359A3EDFBDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD8979F-9736-486A-A229-1359A3EDFBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD8979F-9736-486A-A229-1359A3EDFBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD8979F-9736-486A-A229-1359A3EDFBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

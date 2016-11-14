@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/Styles/bootstrap.css"/>
+    <link rel="stylesheet" href="~/Styles/site.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+}
+@section HeadScripts
+{
+    <script src="/Scripts/app/pages/links/links.module.js"></script>
+    <script src="/Scripts/app/pages/links/links.controller.js"></script>
+    <script src="~/Scripts/app/pages/links/links.service.js"></script>
+    <script src="~/Scripts/app/pages/links/links.directive.js"></script>
+}
+
+<section class="content" ng-app="linkModule" ng-controller="LinkController as vm">   
+
+    <link-update-modal></link-update-modal>
+
+    <table class="appTable">
+        <tr class="header">
+            <th style="width: 30%;">
+                <i class="fa fa-search"></i>
+                <input type="text" name="search" placeholder="Search.." ng-model="vm.titleFilter" id="textFilter">
+            </th>
+            <th style="width: 7%;">
+                Type
+            </th>
+            <th style="width: 7%;">
+                <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 28px;"></i>
+            </th>
+            <th style="width: 12%;">Date</th>
+            <th style="width: 20%;">Url</th>
+            <th style="width: 5%;"></th>
+            <th style="width: 4%;"></th>
+        </tr>
+        
+        <tr>
+            <td>
+                {{vm.newLink.Title}}
+            </td>
+            <td class="typeCol" style="">
+                <link-type-selector></link-type-selector>
+            </td>
+            <td>
+            </td>
+             <td  style="color: indigo; ">
+                 {{ vm.today | date }}
+            </td>
+            <td>
+                <input type="text" ng-model="vm.newLink.Url" class="newUrl" placeholder="Url.."/>
+            </td>
+            <td colspan="2">
+                <button type="button" ng-disabled="vm.addingProcces" ng-click="vm.addNewLink()" class="btn btn-success">Add</button>
+            </td>
+        </tr>
+
+        <tr ng-repeat="link in vm.links | filter: {Title: vm.titleFilter}">
+            <td>
+                <a class="titleCol" href="{{ link.Url }}" target="_blank"> {{ link.Title }}</a>
+            </td>
+            <td class="typeCol" style="text-align: center">
+                <link-type></link-type>
+            </td>
+            <td ng-click="vm.changeFavoriteValue(link)">
+                <link-favorite-value></link-favorite-value>
+            </td>
+            <td style="color:green">
+              {{ link.CreationDate | date }}
+            </td>
+            <td>
+                <a class="urlCol" href="{{ link.Url }}" target="_blank"> {{ link.Url }}</a>
+            </td>
+            <td ng-click="vm.setToUpdateLink(link)">
+                <i class="edit-switch fa fa-pencil handCursor"></i>
+            </td>
+            <td ng-click="vm.deleteLink(link)">
+                <i class="fa fa-trash-o handCursor" aria-hidden="true"></i>
+            </td>
+        </tr>
+    </table>
+</section>
+
