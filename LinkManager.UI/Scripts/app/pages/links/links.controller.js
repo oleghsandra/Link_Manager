@@ -100,6 +100,7 @@
 
                 var promise = linksService.updateLink(vm.updateLink);
                 promise.then(function (response) {
+                    //Fix it, becouse it is hard to test reloading...
                      location.reload();
                 }, errorWarning);
             };

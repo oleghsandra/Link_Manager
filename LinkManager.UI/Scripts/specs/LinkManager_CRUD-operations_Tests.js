@@ -5,14 +5,19 @@
 /// <reference path="../app/pages/links/links.controller.js" />
 /// <reference path="../app/pages/links/links.service.js" />
 
-describe("Link Manager Tests ->", function () {
+describe("Link Manager Tests", function () {
 
     var linkManagerFactory, httpBackend, LinkController, $controller;
     var mockLinks = [
-            { Id: 1001, Title: 'https://www.youtube.com/', Date: '15 December 2016' },
-            { Id: 1002, Title: 'https://www.google.com.ua/', Date: '16 December 2016' },
-            { Id: 1003, Title: 'http://www.henrihietala.fi/running-jasmine-unit-tests-in-your-visual-studio-online-build/', Date: '01 June 2014' },
-            { Id: 1004, Title: 'https://www.youtube.com/watch?v=W1p6T_KXLyI', Date: '02 December 2016' }
+            { Id: 1, Url: 'https://www.vk.com/', CreationDate: '15 December 2016' },
+            { Id: 2, Url: 'https://www.google.com.ua/', CreationDate: '16 December 2016', Type: { Id: 2, Name: 'Study' }},
+            { Id: 3, Url: 'https://cloudinary.com/users/login', CreationDate: '01 June 2014' },
+            { Id: 4, Url: 'https://www.youtube.com', CreationDate: '02 December 2016' }
+    ];
+    var mockLinkTypes = [
+           { Id: 1, Name: 'Study' },
+           { Id: 2, Name: 'Sport' },
+           { Id: 3, Name: 'Cooking' }
     ];
 
     beforeEach(module('linkModule'));
@@ -28,62 +33,74 @@ describe("Link Manager Tests ->", function () {
         linkManagerFactory = linksService;
 
         httpBackend
+            .expectGET('/Link/GetAllLinkTypes')
+            .respond(200, mockLinkTypes);
+
+        httpBackend
             .expectGET('/Link/GetLinks')
             .respond(200, mockLinks);
+
 
         linkController = $controller('LinkController', {});
 
         httpBackend.flush();
     }));
 
+    it('Get link types', function () {
+        expect(linkController.linkTypes.length).toBe(3);
+    });
+
     it('Get links', function () {
         expect(linkController.links.length).toBe(4);
     });
 
     it('Add link', function () {
-        var linkToAdd = { Id: 1001, Title: 'https://www.youtube.com/', Date: '09 December 2016' };
-        var resultLink = null;
+        var newLink = { Id: 5, Title: 'https://www.testurl.com/', Date: '12 December 2016' };
+        var responseLink = null;
 
         httpBackend
-            .expectPOST('/Link/AddLink', linkToAdd)
-            .respond(200, linkToAdd);
+            .expectPOST('/Link/AddLink', newLink)
+            .respond(200, newLink);
 
-        linkManagerFactory.addLink(linkToAdd).then(function (response) {
-            resultLink = response.data;
+        linkManagerFactory.addLink(newLink).then(function (response) {
+            responseLink = response.data;
         });
 
         httpBackend.flush();
 
-        expect(linkToAdd).toEqual(resultLink);
+        expect(newLink).toEqual(responseLink);
     });
-
-    it('Remove link', function () {
-        var linkToRemove = { Id: 1002, Title: 'https://www.google.com.ua/', Date: '08 December 2016' };
+    
+    it('Update link', function () {
+        linkController.updateLinkTypeId = 1;
+        var index = 1;
+        linkController.updateLink =  { Id: 2, Url: 'https://www.google.com.ua/', CreationDate: '16 December 2016', Type: { Id: 2, Name: 'Study' }};
+        var newUrl = "TestUrl";
+        linkController.updateLink.Url = newUrl;
 
         httpBackend
-           .expectPOST('/Link/DeleteLink', linkToRemove)
+            .expectPOST("/Link/UpdateLink", linkController.updateLink)
+            .respond(200, '');
+
+        //TODO: Fix it, becouse location.reload code is available in controller
+        linkController.updateLinks();
+
+        httpBackend.flush();
+
+        expect(linkController.updateLink.Url.toString()).toEqual(newUrl.toString());
+    });
+
+    it('Delete link', function () {
+        var linkToDelete = { Id: 1, Url: 'https://www.vk.com/', CreationDate: '15 December 2016' };
+
+        httpBackend
+           .expectPOST('/Link/DeleteLink', linkToDelete)
            .respond(200, '');
 
-        linkController.remove(linkToRemove);
+        linkController.deleteLink(linkToDelete);
 
         httpBackend.flush();
 
         expect(linkController.links.length).toBe(3);
-    });
-
-    it('Update link', function () {
-        var indxOfEditElement = 1;
-        var newTitle = 'http://www.newTitle.ua/';
-        linkController.indexOfEditElement = indxOfEditElement;
-
-        httpBackend
-            .expectPOST("/Link/UpdateLink", linkController.links[indxOfEditElement])
-            .respond(200, '');
-
-        linkController.saveEditing(newTitle);
-
-        httpBackend.flush();
-
-        expect(linkController.links[indxOfEditElement].Title.toString()).toEqual(newTitle.toString());
     });
 });
