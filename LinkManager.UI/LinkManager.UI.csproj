@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,13 +120,23 @@
     <Content Include="AngularViews\Link\LinkFavoriteValue.html" />
     <Content Include="AngularViews\Link\LinkTypeSelector.html" />
     <Content Include="AngularViews\Link\LinkUpdateModal.html" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\libs\angular-mocks.js" />
+    <Content Include="Scripts\libs\angular-route.js" />
+    <Content Include="Scripts\libs\angular-route.min.js" />
+    <Content Include="Scripts\libs\angular.js" />
+    <Content Include="Scripts\libs\angular.min.js" />
     <Content Include="Scripts\app\pages\links\links.controller.js" />
     <Content Include="Scripts\app\pages\links\links.directive.js" />
     <Content Include="Scripts\app\pages\links\links.module.js" />
     <Content Include="Scripts\app\pages\links\links.service.js" />
-    <Content Include="Scripts\libs\angular.js" />
-    <Content Include="Scripts\libs\angular.min.js" />
+    <Content Include="Scripts\jasmine\boot.js" />
+    <Content Include="Scripts\jasmine\console.js" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\specs\LinkManager_CRUD-operations_Tests.js" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap.css" />
@@ -166,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\angular-route.min.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
