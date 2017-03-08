@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinkManager.UI.BL.Scheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,9 @@ namespace LinkManager.UI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+           
+            SchedulerEngine.Instance.ScheduleAdminJob();
+            SchedulerEngine.Instance.ScheduleFinancialJob();
         }
     }
 }

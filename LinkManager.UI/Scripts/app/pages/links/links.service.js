@@ -1,4 +1,5 @@
-﻿(function (angular) {
+﻿/// <reference path="C:\Epam\LinkManager\LinkManager.UI\Views/Link/Index.cshtml" />
+(function (angular) {
     angular
         .module('linkModule')
         .service('linksService', function($http) {
