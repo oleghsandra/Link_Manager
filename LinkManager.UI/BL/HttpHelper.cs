@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net;
 
 namespace LinkManager.UI.BL
 {
@@ -10,17 +11,21 @@ namespace LinkManager.UI.BL
     {
         public static async Task<T> Get<T>(string url)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpHandler = new HttpClientHandler())
             {
-                var response = await httpClient.GetAsync(url);
-                var responseContent = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
+                httpHandler.Credentials = new NetworkCredential("somelogin", "somepassword");
+                using (var httpClient = new HttpClient(httpHandler))
                 {
-                    throw new Exception("Some error: " + responseContent);
-                }
+                    var response = await httpClient.GetAsync(url);
+                    var responseContent = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<T>(responseContent);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception("Some error: " + responseContent);
+                    }
+
+                    return JsonConvert.DeserializeObject<T>(responseContent);
+                }
             }
         }
 

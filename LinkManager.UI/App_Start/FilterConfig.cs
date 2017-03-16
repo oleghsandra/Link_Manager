@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using LinkManager.UI.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace LinkManager.UI
@@ -8,6 +9,7 @@ namespace LinkManager.UI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new MyActionFilterAttribute());
         }
     }
 }
